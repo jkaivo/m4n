@@ -1,9 +1,9 @@
 .POSIX:
 
 OUTPUTS=text.m4 html.m4
-COMMON=pre.m4
+COMMON=pre.m4 post.m4
 
-m4n: m4n.sh add_common.sh add_output.sh $(OUTPUTS) pre.m4 LICENSE
+m4n: m4n.sh add_common.sh add_output.sh $(OUTPUTS) $(COMMON) LICENSE
 	printf '#!/bin/sh\n' > $@
 	cat LICENSE | sed 's/^/# /' >> $@
 	printf 'set -e\n\n' >> $@
