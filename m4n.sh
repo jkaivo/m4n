@@ -24,13 +24,12 @@ main() {
 
 	shift $((OPTIND - 1))
 
-	if [ $# -eq 0 ]; then
-		$om4 - | m4
+	if [ $# -lt 1 ]; then
+		die 'missing operand\n'
+	elif [ $# -gt 1 ]; then
+		die 'too many operands\n'
 	else
-		while [ $# -gt 0 ]; do
-			$om4 $1 | m4
-			shift
-		done
+		$om4 $1 | m4
 	fi
 }
 
