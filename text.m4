@@ -1,5 +1,11 @@
 divert(-1)
 changecom()
+define(`M4NHEADER', `')
+
+define(`HEADING', `# $1')
+
+define(`NAME_TEXT', `THISNAME() - BRIEF()')
+
 define(`CHARACTER_CLASS', $1)
 define(`CONCEPT', $2)
 define(`CONCEPT_DEFINITION', $2)
@@ -24,7 +30,7 @@ define(`DEFINITION', $1)
 define(`LITERAL', $1)
 define(`OPERATOR', $1)
 define(`FUNCTION', $1())
-define(`HEADER', $1)
+define(`HEADER', <$1>)
 define(`LT', <)
 define(`GT', >)
 define(`IDENTIFIER', $1)
@@ -92,54 +98,3 @@ ifdef(`IMPLEMENTATIONS', `
 
 
 define(`LOCALE', "$1")
-
-divert(0)dnl
-THISNAME() - BRIEF()
-
-Synopsis
-ifdef(`INCLUDES', `INCLUDES()
-')SIGNATURE()
-
-Description
-ifdef(`DESC_INTRO', `The THIS() PRETTYTYPE() ')DESCRIPTION()
-ifdef(`LC_CATEGORIES',
-	`Locale Specific Behavior
-	The behavior of THIS() may differ based on the current value of
-	LC_CATEGORIES().
-	ifdef(`C_LOCALE', `In the LOCALE(`C') locale, C_LOCALE().')dnl
-	ifdef(`OTHER_LOCALES', `In locales other than LOCALE(`C'), OTHER_LOCALES().')dnl
-	')dnl
-ifdef(`IMPLEMENTATION_DEFINED',
-	`Implementation Defined Behavior
-	IMPLEMENTATION_DEFINED()
-	')dnl
-ifdef(`UNSPECIFIED_BEHAVIOR',
-	`Unspecified Behavior
-	UNSPECIFIED_BEHAVIOR()')dnl
-ifdef(`UNDEFINED_BEHAVIOR',
-	`Undefined Behavior
-	UNDEFINED_BEHAVIOR()')dnl
-
-ifdef(`VALUE',
-`Value
-ifdef(`VALUE_PRE', `VALUE_PRE()')
-VALUE()
-')
-
-ifdef(`RETURN_VALUE',
-`Return Value
-ifdef(`RETURNS', `The THIS() PRETTYTYPE() returns one of the following values:')
-RETURN_VALUE()
-ifdef(`RETURN_LIST', `')
-ifdef(`ERRORS',
-	`Errors
-	On failure, IDENTIFIER(errno) maye be set to one of the following
-	values to detail the cause of failure:
-	ERRORS()')
-')
-
-Conformance
-ISO/IEC 9899:1990	C90()
-ISO/IEC 9899:1999	C99()
-ISO/IEC 9899:2011	C11()
-
