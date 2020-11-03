@@ -3,6 +3,6 @@
 eof="$(echo EOF_$1 | tr '.[[:lower:]]' '_[[:upper:]]')"
 
 printf '%s() {\n' "$(echo $1 | tr . _)"
-printf 'uudecode -o- << %s\n' $eof
-uuencode -m $1 < $1
+printf '\tuudecode -o- <<- %s\n' $eof
+uuencode -m $1 < $1 | sed 's/^/\t/'
 printf '%s\n}\n\n' $eof
